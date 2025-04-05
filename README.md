@@ -1,14 +1,25 @@
 # Kafka CPU Temperature Fast Logger
 
-A Docker-based project that streams Linux CPU temperature to Kafka NVMe broker for time series analysis. 
+A Docker-based project that streams Linux CPU temperature to Kafka.
+
+![Flowchart](A_flowchart_created_using_a_vector_graphics_softwa.png)
 
 ## 🚀 Overview
 
 This stack includes:
 
 - **Kafka broker** running in **KRaft mode** (no Zookeeper)
-- **Kafka-UI** for inspecting topics and messages
-- **Java app** that reads CPU temperature from Linux and sends it to Kafka every 5 seconds
+- **Java app** (packaged as a JAR) that reads CPU temperature from Linux and sends it to Kafka every 5 seconds
+
+## 📁 Project Structure
+
+```
+.
+├── docker-compose.yml
+├── cpu-temp-app/
+│   └── cpu-temp-producer.jar
+├── A_flowchart_created_using_a_vector_graphics_softwa.png
+```
 
 ## 🧰 Requirements
 
@@ -26,24 +37,28 @@ sudo mkdir -p /mnt/nvme/kafka_logs
 sudo chown -R 1001:1001 /mnt/nvme/kafka_logs
 ```
 
-### 2. Start Everything
+### 2. Build the Java App (Optional if already packaged)
+
+If you need to build the JAR:
+```bash
+cd cpu-temp-app
+javac -cp kafka-clients-3.7.0.jar CpuTempProducer.java
+jar cfe cpu-temp-producer.jar CpuTempProducer *.class
+```
+
+### 3. Start Everything
 
 ```bash
 docker-compose up --build
 ```
 
-> ✅ This project will automatically format the Kafka Kraft storage if it’s the first run. You don't need to do it manually.
-
-### 3. View the Data
-
-Go to [http://localhost:8080](http://localhost:8080) to open **Kafka-UI**  
-Look for the topic `cpu-temperature` to see the data being produced.
+> ✅ Kafka will automatically format the storage if it’s the first run. You don't need to do it manually.
 
 ## 📄 Notes
 
 - Temperature is read from `/sys/class/thermal/thermal_zone0/temp`
 - Works on **Linux only**
-- CPU temperature is pushed every **1 second** 
+- CPU temperature is pushed every **5 seconds**
 - Kafka data is stored on the mounted **NVMe drive** at `/mnt/nvme/kafka_logs`
 
 ## 📍 Stop Services
@@ -51,4 +66,3 @@ Look for the topic `cpu-temperature` to see the data being produced.
 ```bash
 docker-compose down
 ```
-
