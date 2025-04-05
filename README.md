@@ -6,7 +6,7 @@ This project uses Docker Compose to run:
 
 - A Kafka broker (Bitnami image)
 - Kafka-UI (a web interface for Kafka)
-- A Java app that sends the CPU temperature (Linux only) to a Kafka topic
+- A Java app that sends the CPU temperature (Linux only) to a Kafka topic stored in a mounted NVMe.
 
 ## Requirements
 
