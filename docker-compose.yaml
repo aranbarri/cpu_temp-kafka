@@ -1,0 +1,43 @@
+services:
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka
+    restart: always
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_LISTENERS=PLAINTEXT://:9092,EXTERNAL://:9093
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    volumes:
+      - /mnt/nvme/kafka_logs:/bitnami/kafka
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+    depends_on:
+      - kafka
+
+  cpu-temp-producer:
+    image: openjdk:17
+    container_name: cpu-temp-producer
+    working_dir: /app
+    volumes:
+      - ./cpu-temp-app:/app
+      - /sys/class/thermal:/host_thermal:ro
+    command: bash -c "javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && java -cp .:kafka-clients-3.7.0.jar CpuTempProducer"
+    depends_on:
+      - kafka
