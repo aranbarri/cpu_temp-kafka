@@ -43,7 +43,7 @@ sudo chown -R 1001:1001 /mnt/nvme/kafka_logs
 docker-compose up --build
 ```
 
-> ✅ Kafka will automatically format the storage if it’s the first run. You don't need to do it manually.
+> ✅ This project will automatically format the Kafka Kraft storage if it’s the first run. You don't need to do it manually.
 
 ### 3. View the Data
 
