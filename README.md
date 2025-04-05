@@ -14,9 +14,8 @@ This stack includes:
 ```
 .
 ├── docker-compose.yml
-├── cpu-temp-app/
-│   └── cpu-temp-producer.jar
-├── A_flowchart_created_using_a_vector_graphics_softwa.png
+├── thermal_check/
+│   └── ThermalCheck.jar
 ```
 
 ## 🧰 Requirements
