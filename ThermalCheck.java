@@ -8,8 +8,7 @@ import java.util.Properties;
 
 public class ThermalProducer 
 {
-	static int waitSeconds;
-	
+    static int waitSeconds;
     public static double getCpuTemperature() 
     {
         try 
@@ -27,7 +26,7 @@ public class ThermalProducer
     public static void main(String[] args) throws Exception 
     {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "kafka:9092");
+        props.put("bootstrap.servers", "kafka:9092"); //TODO: Paramet.
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
