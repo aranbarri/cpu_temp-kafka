@@ -22,10 +22,9 @@ services:
       - /mnt/nvme/kafka_logs:/bitnami/kafka
     command: >
       bash -c "
-        if [ ! -f /bitnami/kafka/meta.properties ]; then
-          kafka-storage.sh format -t c9d7f6d0-1234-4ad1-8123-51e401ea9fa7 -c /opt/bitnami/kafka/config/server.properties;
-        fi &&
-        /opt/bitnami/scripts/kafka/run.sh
+        mkdir -p out &&
+        javac -d out -cp kafka-clients-3.5.0.jar ThermalCheck.java &&
+        java -cp out:kafka-clients-3.5.0.jar ThermalCheck
       "
 
   kafka-ui:
