@@ -1,4 +1,4 @@
-# Kafka CPU Temperature Logger
+# Kafka CPU Temperature Fast Logger
 
 This project uses Docker Compose to run:
 
@@ -11,6 +11,7 @@ This project uses Docker Compose to run:
 - Docker
 - Docker Compose
 - Linux (to read CPU temperature from `/sys/class/thermal`)
+- A mounted NVMe drive (used for Kafka log storage)
 
 ## Project Structure
 
@@ -24,7 +25,7 @@ This project uses Docker Compose to run:
 
 ## How to Use
 
-1. Make sure the logs directory exists:
+1. Make sure the logs directory exists on your mounted NVMe drive:
    ```bash
    sudo mkdir -p /mnt/nvme/kafka_logs
    sudo chown -R 1001:1001 /mnt/nvme/kafka_logs
@@ -45,10 +46,10 @@ This project uses Docker Compose to run:
 - Temperature is read from `/sys/class/thermal/thermal_zone0/temp`
 - Works on Linux only.
 - Java app sends a new temperature every 5 seconds.
+- Kafka logs are stored on an NVMe-mounted directory: `/mnt/nvme/kafka_logs`
 
 ## Stop Everything
 
 ```bash
 docker-compose down
 ```
-
