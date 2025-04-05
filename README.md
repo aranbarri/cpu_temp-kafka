@@ -10,17 +10,6 @@ This stack includes:
 - **Kafka-UI** for inspecting topics and messages
 - **Java app** that reads CPU temperature from Linux and sends it to Kafka every 5 seconds
 
-## 📁 Project Structure
-
-```
-.
-├── docker-compose.yml
-├── cpu-temp-app/
-│   ├── CpuTempProducer.java
-│   └── kafka-clients-3.7.0.jar
-├── A_flowchart_created_using_a_vector_graphics_softwa.png
-```
-
 ## 🧰 Requirements
 
 - Docker
