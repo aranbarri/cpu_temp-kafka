@@ -18,7 +18,7 @@ This stack includes:
 │   └── ThermalCheck.jar
 ```
 
-## 🧰 Requirements
+## ✅ Requirements
 
 - Docker
 - Docker Compose
