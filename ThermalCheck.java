@@ -19,7 +19,7 @@ public class ThermalProducer
         } catch (Exception e) 
         {
             e.printStackTrace();
-            return -1; // Valor indicando error
+            return -1; // Algo ha petado
         }
     }
 
@@ -44,7 +44,7 @@ public class ThermalProducer
             } else 
             {
                 System.err.println("Error obteniendo temperatura");
-                waitSeconds=5; //let's wait a little bit more
+                waitSeconds=5; //esperamos para no sobrecargar
             }
 
             Thread.sleep(waitSeconds);
