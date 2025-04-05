@@ -35,7 +35,8 @@ This project uses Docker Compose to run:
    docker-compose up --build
    ```
 
-3. Open [http://localhost:8080](http://localhost:8080) to view Kafka-UI.
+3. Open Kafka-UI:
+   [http://localhost:8080](http://localhost:8080)
 
 4. In Kafka-UI, look for the `cpu-temperature` topic to see temperature data.
 
@@ -50,3 +51,4 @@ This project uses Docker Compose to run:
 ```bash
 docker-compose down
 ```
+
