@@ -1,6 +1,6 @@
-# Kafka CPU Temperature Logger
+# Kafka CPU Temperature Fast Logger
 
-A Docker-based project that streams Linux CPU temperature to Kafka for time series analysis. 
+A Docker-based project that streams Linux CPU temperature to Kafka NVMe broker for time series analysis. 
 
 ## 🚀 Overview
 
@@ -54,7 +54,7 @@ Look for the topic `cpu-temperature` to see the data being produced.
 
 - Temperature is read from `/sys/class/thermal/thermal_zone0/temp`
 - Works on **Linux only**
-- CPU temperature is pushed every **5 seconds**
+- CPU temperature is pushed every **1 second** 
 - Kafka data is stored on the mounted **NVMe drive** at `/mnt/nvme/kafka_logs`
 
 ## 📍 Stop Services
