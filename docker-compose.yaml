@@ -47,6 +47,6 @@ services:
     volumes:
       - ./thermal_check:/app
       - /sys/class/thermal:/host_thermal:ro
-    command: java -jar /app/ThermalCheck.jar
+    command: java -jar ThermalCheck.jar
     depends_on:
       - kafka
