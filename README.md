@@ -1,6 +1,6 @@
 # Kafka CPU Temperature Logger
 
-A Docker-based project that streams Linux CPU temperature to Kafka and visualizes it using Kafka-UI.
+A Docker-based project that streams Linux CPU temperature to Kafka for time series analysis. 
 
 ## 🚀 Overview
 
