@@ -28,21 +28,9 @@ services:
         /opt/bitnami/scripts/kafka/run.sh
       "
 
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: kafka-ui
-    restart: always
-    ports:
-      - "8080:8080"
-    environment:
-      - KAFKA_CLUSTERS_0_NAME=local
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
-    depends_on:
-      - kafka
-
   cpu-temp-producer:
     image: openjdk:17-jdk
-    container_name: cpu-temp-producer
+    container_name: cpu-temp-kafka-producer
     working_dir: /app
     volumes:
       - ./thermal_check:/app
