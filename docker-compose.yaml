@@ -22,9 +22,10 @@ services:
       - /mnt/nvme/kafka_logs:/bitnami/kafka
     command: >
       bash -c "
-        mkdir -p /tmp/out &&
-        javac -d /tmp/out -cp kafka-clients-3.5.0.jar ThermalCheck.java &&
-        java -cp /tmp/out:kafka-clients-3.5.0.jar ThermalCheck
+        if [ ! -f /bitnami/kafka/meta.properties ]; then
+          kafka-storage.sh format -t c9d7f6d0-1234-4ad1-8123-51e401ea9fa7 -c /opt/bitnami/kafka/config/server.properties;
+        fi &&
+        /opt/bitnami/scripts/kafka/run.sh
       "
 
   kafka-ui:
@@ -40,12 +41,16 @@ services:
       - kafka
 
   cpu-temp-producer:
-    image: openjdk:17
+    image: openjdk:17-jdk
     container_name: cpu-temp-producer
     working_dir: /app
     volumes:
       - ./cpu-temp-app:/app
       - /sys/class/thermal:/host_thermal:ro
-    command: bash -c "javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && java -cp .:kafka-clients-3.5.0.jar ThermalCheck"
+    command: >
+      bash -c "
+        javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && \
+        java -cp .:kafka-clients-3.5.0.jar ThermalCheck
+      "
     depends_on:
       - kafka
