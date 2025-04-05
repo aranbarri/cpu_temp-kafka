@@ -54,7 +54,7 @@ This project uses Docker Compose to run:
 
 - Temperature is read from `/sys/class/thermal/thermal_zone0/temp`
 - Works on Linux only.
-- Java app sends a new temperature every 5 seconds.
+- Java app sends a new temperature every second.
 - Kafka logs are stored on an NVMe-mounted directory: `/mnt/nvme/kafka_logs`
 
 ## Stop Everything
