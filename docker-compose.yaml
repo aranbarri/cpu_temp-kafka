@@ -22,9 +22,9 @@ services:
       - /mnt/nvme/kafka_logs:/bitnami/kafka
     command: >
       bash -c "
-        mkdir -p out &&
-        javac -d out -cp kafka-clients-3.5.0.jar ThermalCheck.java &&
-        java -cp out:kafka-clients-3.5.0.jar ThermalCheck
+        mkdir -p /tmp/out &&
+        javac -d /tmp/out -cp kafka-clients-3.5.0.jar ThermalCheck.java &&
+        java -cp /tmp/out:kafka-clients-3.5.0.jar ThermalCheck
       "
 
   kafka-ui:
