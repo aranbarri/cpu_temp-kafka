@@ -1,8 +1,6 @@
 # Kafka CPU Temperature Fast Logger
 
-A Docker-based project that streams Linux CPU temperature to Kafka.
-
-![Flowchart](A_flowchart_created_using_a_vector_graphics_softwa.png)
+A Java and Docker-based project that streams Linux CPU temperature to Kafka.
 
 ## 🚀 Overview
 
