@@ -1,5 +1,7 @@
 # Kafka CPU Temperature Fast Logger
 
+A Docker-based project that streams Linux CPU temperature to Kafka and visualizes it with Kafka-UI.
+
 This project uses Docker Compose to run:
 
 - A Kafka broker (Bitnami image)
@@ -53,3 +55,4 @@ This project uses Docker Compose to run:
 ```bash
 docker-compose down
 ```
+
