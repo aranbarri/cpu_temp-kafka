@@ -45,12 +45,8 @@ services:
     container_name: cpu-temp-producer
     working_dir: /app
     volumes:
-      - ./cpu-temp-app:/app
+      - ./:/app
       - /sys/class/thermal:/host_thermal:ro
-    command: >
-      bash -c "
-        javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && \
-        java -cp .:kafka-clients-3.5.0.jar ThermalCheck
-      "
+    command: java -jar ThermalCheck.jar
     depends_on:
       - kafka
