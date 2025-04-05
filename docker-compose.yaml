@@ -47,6 +47,6 @@ services:
     volumes:
       - ./cpu-temp-app:/app
       - /sys/class/thermal:/host_thermal:ro
-    command: bash -c "javac -cp kafka-clients-3.7.0.jar CpuTempProducer.java && java -cp .:kafka-clients-3.7.0.jar CpuTempProducer"
+    command: bash -c "javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && java -cp .:kafka-clients-3.5.0.jar ThermalCheck"
     depends_on:
       - kafka
