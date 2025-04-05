@@ -2,8 +2,6 @@
 
 A Docker-based project that streams Linux CPU temperature to Kafka and visualizes it using Kafka-UI.
 
-![Flowchart](A_flowchart_created_using_a_vector_graphics_softwa.png)
-
 ## 🚀 Overview
 
 This stack includes:
