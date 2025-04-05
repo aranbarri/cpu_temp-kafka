@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
-public class ThermalProducer 
+public class ThermalCheck 
 {
     static int waitSeconds;
     public static double getCpuTemperature() 

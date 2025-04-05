@@ -1,4 +1,3 @@
-services:
   kafka:
     image: bitnami/kafka:latest
     container_name: kafka
@@ -7,18 +6,20 @@ services:
       - "9092:9092"
       - "9093:9093"
     environment:
-      - KAFKA_BROKER_ID=1
-      - KAFKA_LISTENERS=PLAINTEXT://:9092,EXTERNAL://:9093
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9093
-      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
-      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_KRAFT_CLUSTER_ID=my-cluster-id
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
       - /mnt/nvme/kafka_logs:/bitnami/kafka
-
+    command: >
+      bash -c "
+        if [ ! -f /bitnami/kafka/meta.properties ]; then
+          kafka-storage.sh format -t my-cluster-id -c /opt/bitnami/kafka/config/server.properties
+        fi &&
+        /opt/bitnami/scripts/kafka/run.sh
+      "
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
@@ -38,6 +39,6 @@ services:
     volumes:
       - ./cpu-temp-app:/app
       - /sys/class/thermal:/host_thermal:ro
-    command: bash -c "javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && java -cp .:kafka-clients-3.7.0.jar CpuTempProducer"
+    command: bash -c "javac -cp kafka-clients-3.5.0.jar ThermalCheck.java && java -cp .:kafka-clients-3.5.0.jar ThermalCheck"
     depends_on:
       - kafka
