@@ -7,7 +7,7 @@ A Java and Docker-based project that streams Linux CPU temperature to an NVMe Ka
 This stack includes:
 
 - **Kafka broker** running in **KRaft mode** (no Zookeeper)
-- **Java app** (packaged as a JAR) that reads CPU temperature from Linux and sends it to Kafka every 5 seconds
+- **Java app** (packaged as a JAR) that reads CPU temperature from Linux and sends it to Kafka every second.
 
 ## 📁 Project Structure
 
