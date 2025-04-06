@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   kafka:
     image: bitnami/kafka:latest
@@ -14,9 +12,11 @@ services:
       - KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://:9093
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka 
+      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka  # Kafka escribirá aquí
     volumes:
-      - kafka_data:/bitnami/kafka  # NVMe  cpu-temp-producer:
+      - kafka_data:/bitnami/kafka  # Volumen personalizado
+
+  cpu-temp-producer:
     image: openjdk:17-jdk
     container_name: cpu-temp-kafka-producer
     working_dir: /app
@@ -33,5 +33,5 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /mnt/nvme/kafka  # Carpeta real (unidad NVMe)
-      o: bind                  #  bind mount en vez de usar almacenamiento interno de Docker
+      device: /mnt/nvme/kafka  # Carpeta real en tu host (unidad NVMe)
+      o: bind                  # Hace el bind mount en vez de usar almacenamiento interno de Docker
