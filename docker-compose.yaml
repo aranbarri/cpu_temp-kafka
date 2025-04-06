@@ -20,13 +20,6 @@ services:
       - KAFKA_KRAFT_CLUSTER_ID=c9d7f6d0-1234-4ad1-8123-51e401ea9fa7
     volumes:
       - kafka_data:/bitnami/kafka
-    command: >
-      bash -c "
-        if [ ! -f /bitnami/kafka/meta.properties ]; then
-          kafka-storage.sh format -t c9d7f6d0-1234-4ad1-8123-51e401ea9fa7 -c /opt/bitnami/kafka/config/server.properties;
-        fi &&
-        /opt/bitnami/scripts/kafka/run.sh
-      "
 
   cpu-temp-producer:
     image: openjdk:17-jdk
