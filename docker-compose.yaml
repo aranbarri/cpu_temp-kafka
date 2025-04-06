@@ -33,4 +33,4 @@ services:
       - kafka
       
 volumes:
-  /mnt/nvme/kafka:
+  /mnt/nvme/kafka
