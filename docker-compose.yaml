@@ -31,6 +31,3 @@ services:
     command: java -jar /app/ThermalCheck.jar
     depends_on:
       - kafka
-      
-volumes:
-  /mnt/nvme/kafka
