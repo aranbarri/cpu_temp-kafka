@@ -4,6 +4,7 @@ services:
     image: bitnami/kafka:latest
     container_name: kafka
     restart: always
+    user: root
     ports:
       - "9092:9092"
       - "9093:9093"
@@ -20,7 +21,8 @@ services:
     volumes:
       - /mnt/nvme/kafka:/bitnami/kafka
     command: >
-      bash -c "chown -R 1001:1001 /bitnami/kafka && exec /opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh"
+      bash -c "chown -R 1001:1001 /bitnami/kafka &&
+               su -s /bin/bash -c '/opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh' 1001"
 
   cpu-temp-producer:
     image: openjdk:17-jdk
