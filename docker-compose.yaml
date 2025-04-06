@@ -22,7 +22,7 @@ services:
       - /mnt/nvme/kafka/kafka-logs:/bitnami/kafka-logs
     command: >
       bash -c "chown -R 1001:1001 /bitnami/kafka-logs &&
-               exec su-exec 1001 /opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh"
+               exec gosu 1001 /opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh"
 
   cpu-temp-producer:
     image: openjdk:17-jdk
