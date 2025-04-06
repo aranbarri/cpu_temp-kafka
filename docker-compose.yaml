@@ -20,9 +20,6 @@ services:
       - KAFKA_KRAFT_CLUSTER_ID=c9d7f6d0-1234-4ad1-8123-51e401ea9fa7
     volumes:
       - /mnt/nvme/kafka:/bitnami/kafka
-    command: >
-      bash -c "chown -R 1001:1001 /bitnami/kafka &&
-               su -s /bin/bash -c '/opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh' 1001"
 
   cpu-temp-producer:
     image: openjdk:17-jdk
