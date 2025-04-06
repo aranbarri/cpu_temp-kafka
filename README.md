@@ -2,8 +2,6 @@
 
 A Java and Docker-based project that streams Linux CPU temperature to an NVMe Kafka Broker.
 
-![image](https://github.com/user-attachments/assets/924a03a0-6e47-4b69-ba6a-fbc660168f28)
-
 
 ## 🚀 Overview
 
@@ -59,3 +57,8 @@ docker-compose up --build
 ```bash
 docker-compose down
 ```
+
+-------
+
+![image](https://github.com/user-attachments/assets/924a03a0-6e47-4b69-ba6a-fbc660168f28)
+
