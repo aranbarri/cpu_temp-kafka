@@ -51,7 +51,7 @@ docker-compose up --build
 
 - Temperature is read from `/sys/class/thermal/thermal_zone0/temp`
 - Works on **Linux only**
-- CPU temperature is pushed every **5 seconds**
+- CPU temperature is pushed every **second**
 - Kafka data is stored on the mounted **NVMe drive** at `/mnt/nvme/kafka_logs`
 
 ## 📍 Stop Services
