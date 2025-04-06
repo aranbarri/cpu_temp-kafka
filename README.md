@@ -72,5 +72,5 @@ docker compose up --build
 
 -------
 
-![image](https://github.com/user-attachments/assets/924a03a0-6e47-4b69-ba6a-fbc660168f28)
+![image](https://github.com/user-attachments/assets/6ca169aa-efa8-49ee-937e-984a75f03f99)
 
