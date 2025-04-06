@@ -19,7 +19,7 @@ services:
       - KAFKA_CFG_LOG_DIRS=/bitnami/kafka-logs
       - KAFKA_KRAFT_CLUSTER_ID=c9d7f6d0-1234-4ad1-8123-51e401ea9fa7
     volumes:
-      - /mnt/nvme/kafka/kafka-logs:/bitnami/kafka-logs
+      - /mnt/nvme/kafka/kafka_logs:/bitnami/kafka-logs
     command: >
       bash -c "chown -R 1001:1001 /bitnami/kafka-logs &&
                exec gosu 1001 /opt/bitnami/scripts/kafka/entrypoint.sh /opt/bitnami/scripts/kafka/run.sh"
