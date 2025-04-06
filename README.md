@@ -57,6 +57,18 @@ docker-compose up --build
 ```bash
 docker-compose down
 ```
+## ✅ Reset NVMe Kafka
+
+```bash
+sudo rm -rf /mnt/nvme/kafka-logs # save past logs if needed
+sudo mkdir -p /mnt/nvme/kafka/kafka-logs
+sudo chown -R 1001:1001 /mnt/nvme/kafka/kafka-logs
+sudo chmod -R 755 /mnt/nvme/kafka
+
+docker compose up --build
+```
+
+
 
 -------
 
