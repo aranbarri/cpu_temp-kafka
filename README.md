@@ -30,8 +30,8 @@ This stack includes:
 ### 1. Prepare NVMe Directory
 
 ```bash
-sudo mkdir -p /mnt/nvme/kafka_logs
-sudo chown -R 1001:1001 /mnt/nvme/kafka_logs
+sudo mkdir -p /mnt/nvme/kafka/kafka-logs
+sudo chown -R 1001:1001 /mnt/nvme/kafka/kafka-logs
 ```
   Modify the docker-compose file to mount your nvme dir.
 
