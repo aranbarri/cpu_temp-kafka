@@ -1,7 +1,9 @@
-#AAB
+version: '3.8'
+
 services:
   kafka:
     image: bitnami/kafka:latest
+    container_name: kafka
     ports:
       - "9092:9092"
     environment:
@@ -12,11 +14,9 @@ services:
       - KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://:9093
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_LOG_DIRS=/tmp/kraft-combined-logs
+      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka 
     volumes:
-      - kafka_data:/bitnami/kafka #nvme mounted
-
-  cpu-temp-producer:
+      - kafka_data:/bitnami/kafka  # NVMe  cpu-temp-producer:
     image: openjdk:17-jdk
     container_name: cpu-temp-kafka-producer
     working_dir: /app
@@ -27,5 +27,11 @@ services:
     depends_on:
       - kafka
 
+# Volumen personalizado que hace bind mount de /mnt/nvme/kafka desde el host
 volumes:
   kafka_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /mnt/nvme/kafka  # Carpeta real (unidad NVMe)
+      o: bind                  #  bind mount en vez de usar almacenamiento interno de Docker
