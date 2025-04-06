@@ -34,16 +34,7 @@ sudo mkdir -p /mnt/nvme/kafka_logs
 sudo chown -R 1001:1001 /mnt/nvme/kafka_logs
 ```
 
-### 2. Build the Java App (Optional if already packaged)
-
-If you need to build the JAR:
-```bash
-cd cpu-temp-app
-javac -cp kafka-clients-3.7.0.jar CpuTempProducer.java
-jar cfe cpu-temp-producer.jar CpuTempProducer *.class
-```
-
-### 3. Start Everything
+### 2. Start Everything
 
 ```bash
 docker-compose up --build
