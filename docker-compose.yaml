@@ -3,7 +3,7 @@ services:
   kafka:
     image: bitnami/kafka:latest
     container_name: kafka
-    user: "1001:1001"
+    user: root #dev only
     restart: always
     ports:
       - "9092:9092"
