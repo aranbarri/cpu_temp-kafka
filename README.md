@@ -33,7 +33,9 @@ This stack includes:
 sudo mkdir -p /mnt/nvme/kafka_logs
 sudo chown -R 1001:1001 /mnt/nvme/kafka_logs
 ```
+  Modify the docker-compose file to mount your nvme dir.
 
+  
 ### 2. Start Everything
 
 ```bash
