@@ -1,6 +1,7 @@
 # Kafka CPU Temperature Fast Logger
 
 A Java and Docker-based project that streams Linux CPU temperature to an NVMe Kafka Broker.
+
 Monitors CPU temperature and allows time series analytics.
 
 
