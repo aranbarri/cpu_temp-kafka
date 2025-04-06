@@ -19,7 +19,7 @@ services:
       - KAFKA_CFG_LOG_DIRS=/tmp/kafka_logs
       - KAFKA_KRAFT_CLUSTER_ID=c9d7f6d0-1234-4ad1-8123-51e401ea9fa7
     volumes:
-      - kafka_data:/bitnami/kafka #modify this
+      - /mnt/nvme/kafka:/bitnami/kafka #modify this
 
   cpu-temp-producer:
     image: openjdk:17-jdk
@@ -33,4 +33,4 @@ services:
       - kafka
       
 volumes:
-  kafka_data:
+  /mnt/nvme/kafka:
