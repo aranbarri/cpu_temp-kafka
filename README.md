@@ -42,7 +42,7 @@ sudo chown -R 1001:1001 /mnt/nvme/kafka/kafka-logs
 ### 2. Start Everything
 
 ```bash
-docker-compose up --build
+docker-compose up -d
 ```
 
 > ✅ Kafka will automatically format the storage if it’s the first run. You don't need to do it manually.
